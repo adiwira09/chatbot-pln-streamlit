@@ -12,7 +12,7 @@ def chat_message(role, content):
         st.markdown(
             f"""
             <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 10px;">
-                <div style="background-color: #dcf8c6; padding: 10px 15px; border-radius: 10px; max-width: 60%; text-align: right;">
+                <div style="background-color: #dcf8c6; padding: 10px 15px; border-radius: 10px; max-width: 60%; text-align: right; color: black;">
                     {content}
                 </div>
                 <img src="data:image/jpeg;base64,{get_image_as_base64(user_avatar)}" 
@@ -28,7 +28,7 @@ def chat_message(role, content):
             <div style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 10px;">
                 <img src="data:image/jpeg;base64,{get_image_as_base64(assistant_avatar)}" 
                      alt="Assistant" style="margin-right: 10px; width: 40px; height: 40px; border-radius: 50%;">
-                <div style="background-color: #f1f0f0; padding: 10px 15px; border-radius: 10px; max-width: 60%;">
+                <div style="background-color: #f1f0f0; padding: 10px 15px; border-radius: 10px; max-width: 60%; color: black;">
                     {content}
                 </div>
             </div>
@@ -45,7 +45,7 @@ def get_image_as_base64(image_path):
 # create the app
 st.set_page_config(
     page_title="PLN Chatbot",
-    )
+)
 st.title("Welcome to PLN Chatbot")
 
 # create the message history state
@@ -69,3 +69,23 @@ if prompt:
     response = chatbot.generate_text(prompt)
     st.session_state.messages.append({"role": "assistant", "content": response})
     chat_message("assistant", response)
+
+# Tambahkan CSS untuk mendukung mode gelap
+st.markdown(
+    """
+    <style>
+    /* Deteksi mode gelap */
+    @media (prefers-color-scheme: dark) {
+        div[style*="background-color: #dcf8c6"] {
+            background-color: #056162 !important; /* Warna bubble untuk mode gelap */
+            color: white !important; /* Ubah teks menjadi putih untuk mode gelap */
+        }
+        div[style*="background-color: #f1f0f0"] {
+            background-color: #333333 !important; /* Warna bubble untuk mode gelap */
+            color: white !important; /* Ubah teks menjadi putih untuk mode gelap */
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
