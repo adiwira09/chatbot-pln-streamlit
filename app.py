@@ -3,7 +3,7 @@ import streamlit as st
 from Model import chatbot
 
 user_avatar = "asset/user.png"
-assistant_avatar = "asset/logo_pln.jpg"
+assistant_avatar = "asset/logo_pln.png"
 
 # Fungsi untuk membuat bubble chat
 def chat_message(role, content):
@@ -51,7 +51,7 @@ st.title("Welcome to PLN Chatbot")
 # create the message history state
 if "messages" not in st.session_state:
     st.session_state.messages = []
-    welcome_message = "Hi! I am your virtual assistant. Feel free to ask, and I'll do my best to provide you with answers and assistance."
+    welcome_message = "Hai! Saya asisten virtual Anda. Jangan ragu untuk bertanya, dan saya akan berusaha sebaik mungkin untuk memberikan jawaban dan bantuan."
     st.session_state.messages.append({"role": "assistant", "content": welcome_message})
 
 # render older messages
